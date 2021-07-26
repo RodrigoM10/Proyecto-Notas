@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Link css -->
+  <link rel="stylesheet" href="./notas.css">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- fontAWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <title>Notas</title>
+</head>
+
+<body class="bg-secondary">
+  <!-- seccion navbar -->
+  <section class="sticky-top">
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <form class="d-flex">
+          <input class="form-control me-1" type="search" placeholder="Buscar" aria-label="Buscar">
+          <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <div>
+          <button type="button" class="btn btn-outline-primary m-1" data-bs-toggle="modal"
+            data-bs-target="#modalAgregarNotas">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"><i class="fas fa-ellipsis-h"></i></button>
+        </div>
+      </div>
+    </nav>
+  </section>
+  <main class="container">
+    <!-- TABLA DE NOTAS -->
+    <section class="container my-4 seccion-notas bg-dark">
+      <div>
+        <table class="table">
+          <thead class="text-primary">
+            <tr>
+              <th class="border-0 py-3">Notas</th>
+            </tr>
+          </thead>
+          <tbody id="listadoNotas">
+            <!-- <tr>
+              <td class="border-0 pb-3">
+                <div class="nota">
+                  <div class="card-body">
+                    <a onclick="verNota('${nota.id})" class="text-decoration-none text-white" data-bs-toggle="modal" data-bs-target="#modalVerNotas">
+                      <blockquote class="blockquote mb-0">
+                        <p><b>${nota.titulo}</b></p>
+                        <footer class="blockquote-footer">${fecha.toLocaleString()}-${nota.tipo}
+                        </footer>
+                      </blockquote>
+                    </a>
+                  </div>
+                </div>
+              </td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+     
+    </section>
+  </main>
+  <!-- MODAL AGREGAR NOTAS-->
+  <section>
+    <div class="modal fade" id="modalAgregarNotas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-dark">
+          <form onsubmit="agregarNota(event)">
+            <div class="modal-body">
+              <!-- Formulario Crear Nota -->
+              <div class="mb-1">
+                <input class="form-control" id="titulo" placeholder="Titulo..." autocomplete="off"></input>
+                <label for="titulo"></label>
+              </div>
+              <div>
+                <div class="form-floating">
+                  <textarea class="form-control" placeholder="Leave a comment here" id="texto"
+                    style="height: 400px;"></textarea>
+                  </textarea>
+                  <label for="texto"></label>
+                </div>
+                <div class="text-white my-1 d-flex justify-content-around align-items-center">
+                  <button class="btn btn-outline-primary rounded-3 border-0"><i
+                      class="far fa-check-circle"></i></button>
+                  <button class="btn btn-outline-primary rounded-3 border-0"><i class="fas fa-camera"></i></i></button>
+                  <button class="btn btn-outline-primary rounded-3 border-0"><i class="fas fa-paperclip"></i></button>
+
+                </div>
+              </div>
+
+              <div class="mb-3 d-flex flex-column align-items-center">
+                <label for="tipo" class="text-white mb-2">Categoria</label>
+                <select name="Tipo" id="tipo" class="form-select">
+                  <option value="Trabajo">Trabajo</option>
+                  <option value="Hogar">Hogar</option>
+                  <option value="Otros">Otros</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" data-bs-dismiss="modal">Listo</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Modal Ver Notas -->
+  <section>
+    <div class="modal fade" id="modalVerNotas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen" id="contenidoNota">
+        <!-- <div class="modal-content" >
+           <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+    <!-- Modal Editar Notas -->
+    <section>
+      <div class="modal fade modal-editar" id="modalEditarNotas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content bg-dark">
+            <form onsubmit="editarNota(event)" >
+              <div class="modal-body">
+                <!-- Formulario Editar Nota -->
+                <div class="mb-1">
+                  <input class="form-control" id="tituloEditado" placeholder="Titulo..." autocomplete="off"></input>
+                  <label for="tituloEditado"></label>
+                </div>
+                <div>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="textoEditado"
+                      style="height: 400px;"></textarea>
+                    </textarea>
+                    <label for="textoEditado"></label>
+                  </div>
+                  <div class="text-white my-1 d-flex justify-content-around align-items-center">
+                    <button class="btn btn-outline-primary rounded-3 border-0"><i
+                        class="far fa-check-circle"></i></button>
+                    <button class="btn btn-outline-primary rounded-3 border-0"><i class="fas fa-camera"></i></i></button>
+                    <button class="btn btn-outline-primary rounded-3 border-0"><i class="fas fa-paperclip"></i></button>
+  
+                  </div>
+                </div>
+  
+                <div class="mb-3 d-flex flex-column align-items-center">
+                  <label for="tipo" class="text-white mb-2">Categoria</label>
+                  <select name="Tipo" id="tipoEditado" class="form-select">
+                    <option value="Trabajo">Trabajo</option>
+                    <option value="Hogar">Hogar</option>
+                    <option value="Otros">Otros</option>
+                  </select>
+                </div>
+                <button class="btn btn-primary" data-bs-dismiss="modal">Listo</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+ <!-- OFFCANVAS CONFIGURACION -->
+ <section>
+  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body small">
+      ...
+    </div>
+  </div>
+ </section>
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="./notas.js"></script>
+
+</body>
+
+</html>
