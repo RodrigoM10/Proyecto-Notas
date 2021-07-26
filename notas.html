@@ -22,10 +22,14 @@
   <section class="sticky-top">
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
-        <form class="d-flex">
-          <input class="form-control me-1" type="search" placeholder="Buscar" aria-label="Buscar">
+        <!-- <form class="d-flex" onsubmit="buscarNotas(event)">
+          <input class="form-control me-1" type="search" placeholder="Buscar" aria-label="Buscar" id="busqueda" onkeyup="myFunction()">
           <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
-        </form>
+        </form> -->
+        <div class="d-flex">
+          <input class="form-control me-1" type="search" placeholder="Buscar notas..." aria-label="Buscar" id="busqueda" onkeyup="buscarNotas()">
+          <p><i class="fas fa-search"></i></p>
+        </div>
         <div>
           <button type="button" class="btn btn-outline-primary m-1" data-bs-toggle="modal"
             data-bs-target="#modalAgregarNotas">
@@ -74,25 +78,25 @@
     <div class="modal fade" id="modalAgregarNotas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-dark">
-          <form onsubmit="agregarNota(event)">
+          <form onsubmit="agregarNota(event)" onkeypress="return anular(event)">
             <div class="modal-body">
               <!-- Formulario Crear Nota -->
               <div class="mb-1">
-                <input class="form-control" id="titulo" placeholder="Titulo..." autocomplete="off"></input>
+                <input type="text" class="form-control" id="titulo" placeholder="Titulo..." autocomplete="off" maxlength="60">
                 <label for="titulo"></label>
               </div>
               <div>
                 <div class="form-floating">
-                  <textarea class="form-control" placeholder="Leave a comment here" id="texto"
-                    style="height: 400px;"></textarea>
+                  <textarea type="text" class="form-control" placeholder="Leave a comment here" id="texto"
+                    style="height: 400px;" maxlength="500"></textarea>
                   </textarea>
                   <label for="texto"></label>
                 </div>
                 <div class="text-white my-1 d-flex justify-content-around align-items-center">
-                  <button class="btn btn-outline-primary rounded-3 border-0"><i
+                  <button type="button" class="btn btn-outline-primary rounded-3 border-0"><i
                       class="far fa-check-circle"></i></button>
-                  <button class="btn btn-outline-primary rounded-3 border-0"><i class="fas fa-camera"></i></i></button>
-                  <button class="btn btn-outline-primary rounded-3 border-0"><i class="fas fa-paperclip"></i></button>
+                  <button type="button" class="btn btn-outline-primary rounded-3 border-0"><i class="fas fa-camera"></i></i></button>
+                  <button type="button" class="btn btn-outline-primary rounded-3 border-0"><i class="fas fa-paperclip"></i></button>
 
                 </div>
               </div>
@@ -105,7 +109,7 @@
                   <option value="Otros">Otros</option>
                 </select>
               </div>
-              <button class="btn btn-primary" data-bs-dismiss="modal">Listo</button>
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Listo</button>
             </div>
           </form>
         </div>
@@ -137,17 +141,17 @@
       <div class="modal fade modal-editar" id="modalEditarNotas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content bg-dark">
-            <form onsubmit="editarNota(event)" >
+            <form onsubmit="editarNota(event)" onkeypress="return anular(event)" >
               <div class="modal-body">
                 <!-- Formulario Editar Nota -->
                 <div class="mb-1">
-                  <input class="form-control" id="tituloEditado" placeholder="Titulo..." autocomplete="off"></input>
+                  <input type="text" class="form-control" id="tituloEditado" placeholder="Titulo..." autocomplete="off" maxlength="60">
                   <label for="tituloEditado"></label>
                 </div>
                 <div>
                   <div class="form-floating">
-                    <textarea class="form-control" placeholder="Leave a comment here" id="textoEditado"
-                      style="height: 400px;"></textarea>
+                    <textarea type="text" class="form-control" placeholder="Leave a comment here" id="textoEditado"
+                      style="height: 400px;" maxlength="500"></textarea>
                     </textarea>
                     <label for="textoEditado"></label>
                   </div>

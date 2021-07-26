@@ -11,6 +11,9 @@ const contenidoNota = document.getElementById("contenidoNota");
 const tituloEditadoInput = document.getElementById("tituloEditado");
 const textoEditadoInput = document.getElementById("textoEditado");
 const tipoEditadoInput = document.getElementById("tipoEditado");
+//Elemento para buscador de nota
+const busquedaInput = document.getElementById("busqueda");
+
 
 const notaJson = localStorage.getItem("notas");
 let notas = JSON.parse(notaJson) || [];
@@ -149,6 +152,38 @@ function editarNota(event) {
   notas = notasActualizadas;
   mostrarNotas();
   guardarNotas();
+}
+
+
+
+// function buscarNotas(event) {
+//   event.preventDefault();
+//    function notasFilter(nota) {
+//     return nota.titulo.includes(busquedaInput.value.toLowerCase())
+//   }
+//   const notasFiltradas = notas.filter(notasFilter);
+//   notas = notasFiltradas;
+//   mostrarNotas();
+// }
+
+function buscarNotas() {
+  const filter = busquedaInput.value.toUpperCase();
+  const tbody = document.getElementById("listadoNotas");
+  const tr = tbody.getElementsByTagName("tr");
+  for (let i = 0; i < tr.length; i++) {
+     const nota = tr[i].getElementsByTagName("td")[0];
+    if (nota.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      tr[i].style.display = "";
+    } else {
+      tr[i].style.display = "none";
+    }
+  }
+
+}
+ //ANULAR ENTER EN FORMULARIO
+function anular(e) {
+  tecla = (document.all) ? e.keyCode : e.which;
+  return (tecla != 13);
 }
 
 mostrarNotas();
