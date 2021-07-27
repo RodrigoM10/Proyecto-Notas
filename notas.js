@@ -14,7 +14,6 @@ const tipoEditadoInput = document.getElementById("tipoEditado");
 //Elemento para buscador de nota
 const busquedaInput = document.getElementById("busqueda");
 
-
 const notaJson = localStorage.getItem("notas");
 let notas = JSON.parse(notaJson) || [];
 console.log("🚀 ~ file: notas.js ~ line 10 ~ notas", notas);
@@ -47,29 +46,35 @@ function agregarNota(event) {
   event.target.reset();
   mostrarNotas();
 }
+// function agregarTipo(event) {
+//   event.preventDefault();
+//   const 
+// }
 
 function mostrarNotas() {
   function armarFilasDeNotas(nota) {
     const fecha = new Date(nota.registro);
     const tr = `
-     <td class="border-0 pb-3">
-     <div class="nota">
-       <div class="card-body">
-       <a href="" onclick="verNota('${
-         nota.id
-       }')" class="text-decoration-none text-white" data-bs-toggle="modal" data-bs-target="#modalVerNotas">
-       <blockquote class="blockquote mb-0">
-             <p><b>${nota.titulo}</b></p>
-             <footer class="blockquote-footer">${fecha.toLocaleString()}-${
-      nota.tipo
-    }
-             </footer>
-           </blockquote>
-         </a>
-       </div>
-     </div>
-   </td>
- </tr> 
+  <tr>
+    <td class="border-0 py-0">
+      <div class="nota">
+        <div class="card-body py-2">
+          <a href="" onclick="verNota('${nota.id}')" class="text-decoration-none text-white"
+            data-bs-toggle="modal" data-bs-target="#modalVerNotas">
+            <blockquote class="blockquote mb-0">
+              <p><b>${nota.titulo}</b></p>
+              <footer class="fecha-tipo">
+                ${fecha.toDateString()} - ${nota.tipo}
+              </footer>
+              <footer class="fecha-tipo">
+                
+            </footer>
+            </blockquote>
+          </a>
+        </div>
+      </div>
+    </td>
+  </tr>
          `;
     return tr;
   }
@@ -87,10 +92,10 @@ function verNota(id) {
   <div class="modal-header">
   <div class="d-flex flex-column justify-content-around"> 
       <h4 class="modal-title" id="exampleModalLabel">${
-     notaSeleccionada.titulo
+        notaSeleccionada.titulo
       }</h4>
       <p>
-       ${fecha.toLocaleString()}-${notaSeleccionada.tipo}
+       ${fecha.toDateString()}-${notaSeleccionada.tipo}
       </p>
    </div>
    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -154,8 +159,6 @@ function editarNota(event) {
   guardarNotas();
 }
 
-
-
 // function buscarNotas(event) {
 //   event.preventDefault();
 //    function notasFilter(nota) {
@@ -171,19 +174,61 @@ function buscarNotas() {
   const tbody = document.getElementById("listadoNotas");
   const tr = tbody.getElementsByTagName("tr");
   for (let i = 0; i < tr.length; i++) {
-     const nota = tr[i].getElementsByTagName("td")[0];
+    const nota = tr[i].getElementsByTagName("td")[0];
     if (nota.innerHTML.toUpperCase().indexOf(filter) > -1) {
       tr[i].style.display = "";
     } else {
       tr[i].style.display = "none";
     }
   }
-
 }
- //ANULAR ENTER EN FORMULARIO
+//ANULAR ENTER EN FORMULARIO
 function anular(e) {
-  tecla = (document.all) ? e.keyCode : e.which;
-  return (tecla != 13);
+  tecla = document.all ? e.keyCode : e.which;
+  return tecla != 13;
 }
+
+//adjuntar imagen en nota
+// function adjuntarImagen() {
+//   var archivo = document.getElementById("file").files[0];
+//   var reader = new FileReader();
+//   if (file) {
+//     reader.readAsDataURL(archivo);
+//     reader.onloadend = function () {
+//       document.getElementById("img").src = reader.result;
+//     };
+//   }
+// }
+
+//ACORDION PARA SELECCIONAR CLASE
+// var acc = document.getElementsByClassName("accordion");
+// var i;
+
+// for (i = 0; i < acc.length; i++) {
+//     acc[i].addEventListener("click", function() {
+//         /* Toggle between adding and removing the "active" class,
+//         to highlight the button that controls the panel */
+//         this.classList.toggle("active");
+
+//         /* Toggle between hiding and showing the active panel */
+//         var panel = this.nextElementSibling;
+//         if (panel.style.display === "block") {
+//             panel.style.display = "none";
+//         } else {
+//             panel.style.display = "block";
+//         }
+//     });
+// }
+
+// var options = document.getElementsByClassName("option");
+
+// for(var o = 0; o < options.length; o++) {
+//   options[o].addEventListener('click', function(e) {
+//   	this.parentElement.previousElementSibling.innerHTML = this.dataset.value;
+
+//     /* alert(e.target.dataset.value);  */
+//   })
+// } 
+//agregarTIPO
 
 mostrarNotas();
