@@ -88,7 +88,7 @@ function verNota(id) {
   });
   const fecha = new Date(notaSeleccionada.registro);
   const contenido = `
-  <div class="modal-content" >
+  <div class="modal-content">
   <div class="modal-header">
   <div class="d-flex flex-column justify-content-around"> 
       <h4 class="modal-title" id="exampleModalLabel">${
@@ -106,7 +106,7 @@ function verNota(id) {
  <div class="modal-footer">
    <button data-bs-dismiss="modal" onclick="cargarModalEditar('${
      notaSeleccionada.id
-   }')" data-bs-toggle="modal" data-bs-target="#modalEditarNotas" class="btn btn-primary">Editar</button>
+   }')" data-bs-toggle="modal" data-bs-target="#modalEditarNotas" class="btn btn-secondary">Editar</button>
    <button onclick="eliminarNota('${
      notaSeleccionada.id
    }')" data-bs-dismiss="modal"  class="btn btn-dark">Eliminar</button>
@@ -159,16 +159,6 @@ function editarNota(event) {
   guardarNotas();
 }
 
-// function buscarNotas(event) {
-//   event.preventDefault();
-//    function notasFilter(nota) {
-//     return nota.titulo.includes(busquedaInput.value.toLowerCase())
-//   }
-//   const notasFiltradas = notas.filter(notasFilter);
-//   notas = notasFiltradas;
-//   mostrarNotas();
-// }
-
 function buscarNotas() {
   const filter = busquedaInput.value.toUpperCase();
   const tbody = document.getElementById("listadoNotas");
@@ -186,6 +176,22 @@ function buscarNotas() {
 function anular(e) {
   tecla = document.all ? e.keyCode : e.which;
   return tecla != 13;
+}
+
+function agregarTipo(){
+  const newType = document.getElementById("nuevoTipo")
+  let x = document.getElementById("tipo");
+  let option = document.createElement("option");
+  option.text = newType.value;
+  x.add(option,x[4]);
+}
+
+function agregarTipoEditado() {
+  const newType = document.getElementById("nuevoTipoEditado")
+  let x = document.getElementById("tipoEditado");
+  let option = document.createElement("option");
+  option.text = newType.value;
+  x.add(option,x[4]);
 }
 
 //adjuntar imagen en nota

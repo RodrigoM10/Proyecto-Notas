@@ -1,15 +1,29 @@
 body{
     box-sizing: border-box;
-    background-color: grey;
+    background-color: rgb(0, 0, 0);
+    background-image: url(./imagenes/deahtnote.jpg);
+}
+@media only screen and (max-width: 700px) {
+body{
+background-image: url(./imagenes/deathcelu.jpeg);
+}
 }
 .seccion-notas {
     border-radius: 2rem;
+    background-color: rgb(7, 6, 6);
+}
+.titulo-block{
+    font-family: "Trade Winds", cursive;
+    font-size: 25px;
 }
 .nota {
     display: flex;
     justify-content: space-around;
     align-items: center;
     border-bottom: 1px solid rgb(145, 145, 145);
+}
+.modal-agregar {
+    background-color: black;
 }
 .modal-editar {
     background-color: rgba(0, 0, 0, 0.74);
@@ -29,7 +43,7 @@ body{
 
 
 /* ACORDION TIPO */
-.accordion, .option  {
+/* .accordion, .option  {
     background-color: #eee;
     color: #444;
     cursor: pointer;
@@ -73,4 +87,4 @@ body{
 .btn-add:hover {
     color: cornsilk;
     background-color: #0d6dfdd0;
-}
+} */

@@ -14,29 +14,33 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
     crossorigin="anonymous" />
+      <!-- link font style -->
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
   <title>Notas</title>
 </head>
 
 <body class="bg-secondary">
   <!-- seccion navbar -->
   <section class="sticky-top">
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar ">
       <div class="container-fluid">
         <!-- <form class="d-flex" onsubmit="buscarNotas(event)">
           <input class="form-control me-1" type="search" placeholder="Buscar" aria-label="Buscar" id="busqueda" onkeyup="myFunction()">
-          <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+          <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
         </form> -->
-        <div class="d-flex">
+        <div class="d-flex align-items-center">
           <input class="form-control me-1" type="search" placeholder="Buscar notas..." aria-label="Buscar" id="busqueda"
             onkeyup="buscarNotas()">
-          <p><i class="fas fa-search"></i></p>
         </div>
         <div>
-          <button type="button" class="btn btn-outline-primary m-1" data-bs-toggle="modal"
+          <button type="button" class="btn btn-outline-secondary m-1" data-bs-toggle="modal"
             data-bs-target="#modalAgregarNotas">
             <i class="fas fa-edit"></i>
           </button>
-          <button type="button" class="btn btn-outline-primary" data-bs-toggle="offcanvas"
+          <button type="button" class="btn btn-outline-secondary" data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"><i class="fas fa-ellipsis-h"></i></button>
         </div>
       </div>
@@ -44,12 +48,12 @@
   </section>
   <main class="container">
     <!-- TABLA DE NOTAS -->
-    <section class="container my-4 seccion-notas bg-dark py-1">
+    <section class="container my-4 seccion-notas py-1">
       <div>
-        <table class="table">
-          <thead class="text-primary">
+        <table class="table text-white">
+          <thead>
             <tr>
-              <th class="border-0 py-2 text-center">Notas</th>
+              <th class="border-0 py-2 text-center titulo-block d-flex justify-content-center align-items-center"><h5><s>Death</s> Notes</h5></th>
             </tr>
           </thead>
           <tbody id="listadoNotas">
@@ -91,25 +95,31 @@
               <div>
                 <div class="form-floating">
                   <textarea type="text" class="form-control" placeholder="Leave a comment here" id="texto"
-                    style="height: 300px;" maxlength="500" onkeypress="return anular(event)"></textarea>
+                    style="height: 250px;" maxlength="500" onkeypress="return anular(event)"></textarea>
                   <label for="texto"></label>
                 </div>
                 <div class="text-white my-1 d-flex justify-content-around align-items-center">
-                  <button type="button" class="btn btn-outline-primary rounded-3 border-0"><i
+                  <button type="button" class="btn btn-outline-secondary rounded-3 border-0"><i
                       class="far fa-check-circle"></i></button>
-                  <button type="button" class="btn btn-outline-primary rounded-3 border-0"><i
+                  <button type="button" class="btn btn-outline-secondary rounded-3 border-0"><i
                       class="fas fa-camera"></i></i></button>
-                  <button type="button" class="btn btn-outline-primary rounded-3 border-0"><i
+                  <button type="button" class="btn btn-outline-secondary rounded-3 border-0"><i
                       class="fas fa-paperclip"></i></button>
                 </div>
               </div>
               <div class="mb-3 d-flex flex-column align-items-center">
-                <label for="tipo" class="text-white mb-2">Categoria</label>
+                <label for="tipo" class="text-white mb-2">Categorias</label>
                 <select name="Tipo" id="tipo" class="form-select">
                   <option value="Trabajo">Trabajo</option>
                   <option value="Hogar">Hogar</option>
                   <option value="Otros">Otros</option>
                 </select>
+              </div>
+              <div class="mb-2 d-flex align-items-center">
+                <input type="text" id="nuevoTipo" class="form-control" placeholder="Categoria Nueva +++"
+                  autocomplete="off" minlength="2" maxlength="15">
+                <button onclick="agregarTipo()" type="button" class="btn btn-outline-secondary rounded-3"><i
+                    class="fas fa-plus-circle"></i></button>
               </div>
               <!-- <div class="mb-2">
                 <button type="button" class="accordion">Categoria</button>
@@ -123,7 +133,7 @@
                   </div>
                 </div>
               </div> -->
-              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Listo</button>
+              <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Listo</button>
             </div>
           </form>
         </div>
@@ -154,7 +164,7 @@
           <div class="modal-footer">
             <button data-bs-dismiss="modal" onclick="cargarModalEditar('${
              notaSeleccionada.id
-             }')" data-bs-toggle="modal" data-bs-target="#modalEditarNotas" class="btn btn-primary">Editar
+             }')" data-bs-toggle="modal" data-bs-target="#modalEditarNotas" class="btn btn-secondary">Editar
             </button>
             <button onclick="eliminarNota('${
              notaSeleccionada.id
@@ -182,15 +192,15 @@
               <div>
                 <div class="form-floating">
                   <textarea type="text" class="form-control" placeholder="Leave a comment here" id="textoEditado"
-                    style="height: 400px;" maxlength="500" onkeypress="return anular(event)"></textarea>
+                    style="height: 250px;" maxlength="500" onkeypress="return anular(event)"></textarea>
                   </textarea>
                   <label for="textoEditado"></label>
                 </div>
                 <div class="text-white my-1 d-flex justify-content-around align-items-center">
-                  <button class="btn btn-outline-primary rounded-3 border-0"><i
+                  <button class="btn btn-outline-secondary rounded-3 border-0"><i
                       class="far fa-check-circle"></i></button>
-                  <button class="btn btn-outline-primary rounded-3 border-0"><i class="fas fa-camera"></i></i></button>
-                  <button class="btn btn-outline-primary rounded-3 border-0"><i class="fas fa-paperclip"></i></button>
+                  <button class="btn btn-outline-secondary rounded-3 border-0"><i class="fas fa-camera"></i></i></button>
+                  <button class="btn btn-outline-secondary rounded-3 border-0"><i class="fas fa-paperclip"></i></button>
                 </div>
               </div>
               <div class="mb-3 d-flex flex-column align-items-center">
@@ -201,7 +211,13 @@
                   <option value="Otros">Otros</option>
                 </select>
               </div>
-              <button class="btn btn-primary" data-bs-dismiss="modal">Listo</button>
+              <div class="mb-2 d-flex align-items-center">
+                <input type="text" id="nuevoTipoEditado" class="form-control" placeholder="Categoria Nueva +++"
+                  autocomplete="off">
+                <button onclick="agregarTipoEditado()" type="button" class="btn btn-outline-secondary rounded-3"><i
+                    class="fas fa-plus-circle"></i></button>
+              </div>
+              <button class="btn btn-secondary" data-bs-dismiss="modal">Listo</button>
             </div>
           </form>
         </div>
@@ -220,16 +236,16 @@
       <div class="offcanvas-body small">
         <div
           class="bg-dark m-2 p-2 rounded-3 text-white d-flex justify-content-between align-items-center item-configuracion">
-          <h5>Ver como lista</h5> <button class="btn btn-outline-primary"><i class="fas fa-list-ul"></i></button>
+          <h5>Ver como lista</h5> <button class="btn btn-outline-secondary"><i class="fas fa-list-ul"></i></button>
         </div>
         <div
           class="bg-dark m-2 p-2 rounded-3 text-white d-flex justify-content-between align-items-center item-configuracion">
-          <h5>Seleccionar notas</h5> <button class="btn btn-outline-primary"><i
+          <h5>Seleccionar notas</h5> <button class="btn btn-outline-secondary"><i
               class="far fa-check-square"></i></button>
         </div>
         <div
           class="bg-dark m-2 p-2 rounded-3 text-white d-flex justify-content-between align-items-center item-configuracion">
-          <h5>Ver archivos adjuntos</h5> <button class="btn btn-outline-primary"><i
+          <h5>Ver archivos adjuntos</h5> <button class="btn btn-outline-secondary"><i
               class="fas fa-paperclip"></i></button>
         </div>
       </div>
