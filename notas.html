@@ -111,7 +111,13 @@
                   <option value="Otros">Otros</option>
                 </select>
               </div>
-              <!-- <div class="mb-2">
+              <div class="mb-2 d-flex align-items-center">
+                <input type="text" id="nuevoTipo" class="form-control" placeholder="Categoria Nueva +++"
+                  autocomplete="off" minlength="2" maxlength="15">
+                <button onclick="agregarTipo()" type="button" class="btn btn-outline-secondary rounded-3"><i
+                    class="fas fa-plus-circle"></i></button>
+              </div>
+              <div class="mb-2">
                 <button type="button" class="accordion">Categoria</button>
                 <div class="panel" id="tipo">
                   <option class="option" data-value="Trabajo">Trabajo</option>
@@ -122,8 +128,8 @@
                         class="fas fa-plus-circle"></i></button>
                   </div>
                 </div>
-              </div> -->
-              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Listo</button>
+              </div>
+              <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Listo</button>
             </div>
           </form>
         </div>

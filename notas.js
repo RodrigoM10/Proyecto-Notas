@@ -46,10 +46,7 @@ function agregarNota(event) {
   event.target.reset();
   mostrarNotas();
 }
-// function agregarTipo(event) {
-//   event.preventDefault();
-//   const 
-// }
+
 
 function mostrarNotas() {
   function armarFilasDeNotas(nota) {
